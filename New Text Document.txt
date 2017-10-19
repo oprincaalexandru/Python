@@ -1,0 +1,213 @@
+s=[]
+def citire(n):
+    for i in range(0,n):
+        s.append(int(input()))
+
+
+def adauga(s,nr):
+    s.append(nr)
+
+
+def insereaza(s,poz,nr):
+    s.insert(poz,nr)
+
+
+def test_adauga():
+    vtest=[1]
+    adauga(vtest,2)
+    assert(vtest[1]==2)
+
+
+def test_insereaza():
+    ltest=[2,3]
+    insereaza(ltest,1,5)
+    assert(ltest[1]==5)
+
+def afisare():
+    for i in range(0,len(s)):
+        print(s[i])
+
+def stergere(s,nr):
+    s.remove(nr)
+
+def test_stergere():
+    vtest=[2,3,4]
+    stergere(vtest,2)
+    assert vtest==[3,4]
+
+def stergepoz(s,poz):
+    del s[poz]
+
+def test_stergepoz():
+    vtest=[1,2,3,4,5]
+    stergepoz(vtest,1)
+    assert vtest==[1,3,4,5]
+
+def stergeri_multiple(s,poz1,poz2):
+    del s[poz1:poz2]
+
+def test_stergeri_multiple():
+    vtest=[1,2,3,4,5,6,7]
+    stergeri_multiple(vtest,int(1),int(3))
+    assert vtest==[1,4,5,6,7]
+
+def prim(nr):
+    if (nr==1 or nr==0 ):
+        return False
+    if nr==2 :
+        return True
+    if(nr%2==0):
+        return False
+    i=3
+    while(i*i<=nr):
+        if(nr%i==0):
+            return False
+        i+=2
+    return True
+
+def test_prim():
+    assert prim(0)==False
+    assert prim(2)==True
+    assert prim(35)==False
+    assert prim(19)==True
+
+def prime(s,inc,sf):
+    for i in range (inc,sf):
+        if prim(s[i])==True :
+            print(s[i])
+
+def nrimpar(nr):
+    if(nr%2==0):
+        return False
+    return True
+
+def test_nrimpar():
+    assert nrimpar(0)==False
+    assert nrimpar(5)==True
+    assert nrimpar(25)==True
+    assert nrimpar(2)==False
+
+def odd(s,inc,sf):
+    for i in range (inc,sf):
+        if(nrimpar(s[i])==True):
+            print(s[i])
+
+def sumaElem(s,inc,sf):
+    suma=0
+    for i in range(inc,sf):
+        suma+=s[i]
+    return suma
+
+def test_sumaElem():
+    vtest=[1,2,3,4,5]
+    assert sumaElem(vtest,0,5)==15
+
+def divcom(a,b):
+    while(a!=b):
+        if(a>b):
+            a=a-b
+        else:
+            b=b-a
+    return a
+
+def test_divcom():
+    assert divcom(15,5)==5
+    assert divcom(20,15)==5
+    assert divcom(20,20)==20
+
+def gcd(s,inc,sf):
+    divizor=s[inc]
+    for i in range (inc+1,sf):
+        divizor=divcom(divizor,s[i])
+    return divizor
+
+def test_gcd():
+    vtest=[1,2,3,4,5]
+    assert gcd(vtest,int(1),int(4))==1
+    vtest=[2,4,6,8]
+    assert gcd(vtest,int(0),int(4))==2
+
+def max(a,b):
+    if a>b :
+        return a
+    return b
+
+def test_max():
+    assert max(5,3)==5
+    assert max(5,5)==5
+    assert max(3,5)==5
+
+def max_array(s,inc,sf):
+    maxi=s[inc]
+    for i in range(inc+1,sf):
+        maxi=max(maxi,s[i])
+    return maxi
+
+def test_max_array():
+    vtest=[10,6,5,3,9]
+    assert max_array(vtest,int(0),int(5))==10
+    assert max_array(vtest,int(1),int(5))==9
+
+def filter_prime(s):
+    i=0
+    while(i<len(s)):
+        if prim(s[i])==False:
+            stergere(s,s[i])
+            i=i-1
+        i+=1
+
+def test_filter_prime():
+    vtest=[1,2,3,4,5,6,7,8,9]
+    filter_prime(vtest)
+    assert vtest==[2,3,5,7]
+
+def negative(nr):
+    if(nr<0):
+        return True
+    return False
+
+def test_negative():
+    assert negative(int(5))==False
+    assert negative(int(-2))==True
+
+
+def teste():
+    test_adauga()
+    test_insereaza()
+    test_stergere()
+    test_stergepoz()
+    test_stergeri_multiple()
+    test_prim()
+    test_nrimpar()
+    test_sumaElem()
+    test_divcom()
+    test_gcd()
+    test_max()
+    test_max_array()
+    test_filter_prime()
+    test_negative()
+
+def main():
+    teste()
+    n = int(input())
+    citire(n)
+    #adauga(s,input())
+    #insereaza(s,int(input()),int(input()))
+    #stergepoz(s,int(input()))
+    #stergere(s,int(input()))
+    #stergeri_multiple(s,int(input()),int(input())+1)
+    #prime(s,int(input()),int(input()))
+    #odd(s,int(input()),int(input()))
+    #print(sumaElem(s,int(input()),int(input())))
+    #print(gcd(s,int(input()),int(input())))
+    #print(max_array(s,int(input()),int(input())))
+    #filter_prime(s)
+
+    afisare()
+
+
+
+
+
+
+main()
